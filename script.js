@@ -1,3 +1,8 @@
+function darkModeToggle(){
+    let body = document.body;
+    body.classList.toggle("dark-mode");
+}
+
 function verifyForm()
 {
     const name = document.getElementById("name").value;
