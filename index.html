@@ -8,14 +8,14 @@
 <body>
     <form id="form">
         <h3>Nombre Completo</h3>
-        <input type="text" id="name" name="name" minlength="3">
+        <input type="text" id="name" name="name" minlength="3" onchange="verifyName()">
         <h3>Email</h3>
-        <input type="email" id="email" name="email">
+        <input type="email" id="email" name="email" onchange="verifyEmail()">
         <h3>Contraseña</h3>
-        <input type="password" id="password" name="password" minlength="8">
+        <input type="password" id="password" name="password" minlength="8" onchange="verifyPassword()">
         <h3>Confirmar Contraseña</h3>
-        <input type="password" id="confirmPassword" name="confirmPassword">
-        <button type="button" id="sendButton" name="sendButton">Confirmar</button>
+        <input type="password" id="confirmPassword" name="confirmPassword" onchange="verifyConfirmation()">
+        <button type="button" id="sendButton" name="sendButton" onclick="verifyForm()">Confirmar</button>
     </form>
     <script src="script.js"></script>
 </body>
