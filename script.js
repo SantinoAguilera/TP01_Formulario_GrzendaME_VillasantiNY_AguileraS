@@ -15,14 +15,28 @@ const printStatus = (input, subtext, errorMsg, valid) =>{
     }
 }
 
+const verifyName = () =>{
+    const name = document.getElementById("name");
+    const errorMsg = "El nombre tiene que tener un minimo de 3 caracteres"
+    let valid;
+
+    if (name.value >= 3) {
+        valid = true;
+    }
+    else{
+        vaild = false;
+    }
+    printStatus("name", "errorName", errorMsg, valid);
+}
+
 function verifyPassword()
 {
-    const password = document.getElementById("password").value;
+    const password = document.querySelector("#password");
     const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     const errorMsg = "Tu contraseña debe ser de al menos 8 caracteres y contener al menos una letra y un número.";
     let valid;
 
-    if (regex.test(password))
+    if ((regex.test(password.value)))
     {
         valid = true;
     }
@@ -53,33 +67,54 @@ function verifyConfirmation()
 
 function verifyForm()
 {
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
+    const name = document.getElementById("name");
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirmPassword");
     let error = false;
 
-    if (name.trim().length === 0)
+    if (name.value.trim().length === 0)
     {
         error = true;
-        console.log("ERRORnameHasNoValue")
+        name.style.border = "red";
+    }
+    else
+    {
+        resetErrorStyles(name);
     }
 
-    if (email.trim().length === 0)
+    if (email.value.trim().length === 0)
     {
         error = true;
-        console.log("ERRORemailHasNoValue")
+        email.style.border = "red";
+    }
+    else
+    {
+        resetErrorStyles(email);
     }
 
-    if (password.trim().length === 0)
+    if (password.value.trim().length === 0)
     {
         error = true;
-        console.log("ERRORpasswordHasNoValue")
+        password.style.border = "red";
+    }
+    else
+    {
+        resetErrorStyles(password);
     }
 
-    if (confirmPassword.trim().length === 0)
+    if (confirmPassword.value.trim().length === 0)
     {
         error = true;
-        console.log("ERRORconfirmPasswordHasNoValue")
+        confirmPassword.style.border = "red";
     }
+    else
+    {
+        resetErrorStyles(confirmPassword);
+    }
+}
+
+function resetErrorStyles(inputElement)
+{
+    inputElement.style.border = "";
 }
