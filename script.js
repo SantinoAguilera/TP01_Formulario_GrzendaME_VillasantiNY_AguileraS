@@ -125,6 +125,11 @@ function verifyForm()
     {
         resetErrorStyles(confirmPassword);
     }
+
+    if (!error)
+    {
+        localStorage.setItem()
+    }
 }
 
 function resetErrorStyles(inputElement)

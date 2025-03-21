@@ -1,2 +1,2 @@
 # TP01_Formulario_GrzendaME_VillasantiNY_AguileraS
-Para el modo oscuro utilizamos la pagina de [W3schools](https://www.w3schools.com/howto/howto_js_toggle_dark_mode.asp) para tener una base para estilar el sitio web
+Me dijiste que yo específicamente no necesito explicar cómo hice todo en el README, así que te dejo un meme:
