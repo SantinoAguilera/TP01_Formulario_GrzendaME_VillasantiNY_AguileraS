@@ -12,7 +12,7 @@ const printError = (input, subtext) =>{
 function verifyPassword()
 {
     const password = document.getElementById("password").value;
-    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
     if (console.log(regex.test(password)))
     {
@@ -20,7 +20,22 @@ function verifyPassword()
     }
     else
     {
-        document.querySelector("#errorPassword").innerHTML = "La contraseña debe de tener como mínimo 8 caracteres, al menos un número y una letra."
+        document.querySelector("#errorPassword").innerHTML = "La contraseña debe de tener como mínimo 8 caracteres, al menos un número y una letra.";
+    }
+}
+
+function verifyConfirmation()
+{
+    const password = document.querySelector("#password");
+    const confirmPassword = document.querySelector("#confirmPassword");
+
+    if (password == confirmPassword)
+    {
+        //Añadir output grafico de que la confirmación esta bien (sugiero cambiarle el color al contorno del Input)
+    }
+    else
+    {
+        document.querySelector("#errorPassword").innerHTML = "Las contraseñas no coinciden.";
     }
 }
 
