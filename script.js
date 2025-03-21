@@ -108,5 +108,5 @@ function verifyForm()
 
 function resetErrorStyles(inputElement)
 {
-    inputElement.style.backgroundColor = "";
+    inputElement.style.border = "";
 }
