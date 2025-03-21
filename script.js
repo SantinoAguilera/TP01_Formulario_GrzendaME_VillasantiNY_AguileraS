@@ -3,6 +3,12 @@ function darkModeToggle(){
     body.classList.toggle("dark-mode");
 }
 
+const printError = (input, subtext) =>{
+    let campo = getElementById(input);
+    let error = getElementById(subtext);
+
+}
+
 function verifyPassword()
 {
     const password = document.getElementById("password").value;
