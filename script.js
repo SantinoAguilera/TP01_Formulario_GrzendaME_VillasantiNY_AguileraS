@@ -29,6 +29,19 @@ const verifyName = () =>{
     printStatus("name", "errorName", errorMsg, valid);
 }
 
+const verifyEmail = () =>{
+    const email = document.getElementById("email");
+    const errorMsg = "El email tiene que tener un formato valido";
+    let valid
+
+    if (condition) {
+        valid = true;
+    } else {
+        valid = false;
+    }
+    printStatus("email", "errorEmail", errorMsg, valid);
+}
+
 function verifyPassword()
 {
     const password = document.querySelector("#password");
