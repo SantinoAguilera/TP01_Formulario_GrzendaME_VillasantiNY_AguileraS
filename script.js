@@ -17,17 +17,20 @@ const printStatus = (input, subtext, errorMsg, valid) =>{
 
 function verifyPassword()
 {
-    const password = document.getElementById("password").value;
+    const password = document.querySelector("#password");
     const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     const errorMsg = "La contraseña debe de tener como mínimo 8 caracteres, al menos un número y una letra.";
     let valid;
 
-    if (console.log(regex.test(password)))
+    if ((regex.test(password.value)))
     {
+        password.style.border = "green";
         valid = true;
     }
     else
     {
+        document.querySelector("#errorPassword").innerHTML = "La contraseña debe de tener como mínimo 8 caracteres, al menos un número y una letra.";
+        password.style.border = "red";
         valid = false;
     }
     printStatus("password", "errorPassword", errorMsg, valid);
@@ -40,12 +43,15 @@ function verifyConfirmation()
     const errorMsg = "Las contraseñas no coinciden.";
     let valid;
 
-    if (password == confirmPassword)
+    if (password.value == confirmPassword.value)
     {
+        confirmPassword.style.border = "green";
         valid = true;
     }
     else
     {
+        document.querySelector("#errorConfirm").innerHTML = "Las contraseñas no coinciden.";
+        confirmPassword.style.border = "red";
         valid = false;
     }
     printStatus("confirmPassword", "errorConfirm", errorMsg, valid);
@@ -53,33 +59,59 @@ function verifyConfirmation()
 
 function verifyForm()
 {
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
+    const name = document.getElementById("name");
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirmPassword");
     let error = false;
 
-    if (name.trim().length === 0)
+    if (name.value.trim().length === 0)
     {
         error = true;
-        console.log("ERRORnameHasNoValue")
+        name.style.border = "red";
+    }
+    else
+    {
+        resetErrorStyles(name);
     }
 
-    if (email.trim().length === 0)
+    if (email.value.trim().length === 0)
     {
         error = true;
-        console.log("ERRORemailHasNoValue")
+        email.style.border = "red";
+    }
+    else
+    {
+        resetErrorStyles(email);
     }
 
-    if (password.trim().length === 0)
+    if (password.value.trim().length === 0)
     {
         error = true;
-        console.log("ERRORpasswordHasNoValue")
+        password.style.border = "red";
+    }
+    else
+    {
+        resetErrorStyles(password);
     }
 
-    if (confirmPassword.trim().length === 0)
+    if (confirmPassword.value.trim().length === 0)
     {
         error = true;
-        console.log("ERRORconfirmPasswordHasNoValue")
+        confirmPassword.style.border = "red";
     }
+    else
+    {
+        resetErrorStyles(confirmPassword);
+    }
+
+    if (!error)
+    {
+        localStorage.setItem()
+    }
+}
+
+function resetErrorStyles(inputElement)
+{
+    inputElement.style.border = "";
 }
