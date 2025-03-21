@@ -7,10 +7,10 @@ const printStatus = (input, subtext, errorMsg, valid) =>{
     let campo = document.getElementById(input);
     let error = document.getElementById(subtext);
     if (valid) {
-        campo.style.color = "green";
+        campo.classList.toggle("valid");
         error.innerHTML = "";
     } else {
-        campo.style.color = "red";
+        campo.classList.toggle("invalid");
         error.innerHTML = errorMsg;
     }
 }
@@ -19,10 +19,10 @@ function verifyPassword()
 {
     const password = document.getElementById("password").value;
     const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    const errorMsg = "La contraseña debe de tener como mínimo 8 caracteres, al menos un número y una letra.";
+    const errorMsg = "Tu contraseña debe ser de al menos 8 caracteres y contener al menos una letra y un número.";
     let valid;
 
-    if (console.log(regex.test(password)))
+    if (regex.test(password))
     {
         valid = true;
     }
@@ -40,7 +40,7 @@ function verifyConfirmation()
     const errorMsg = "Las contraseñas no coinciden.";
     let valid;
 
-    if (password == confirmPassword)
+    if (password.value == confirmPassword.value)
     {
         valid = true;
     }
