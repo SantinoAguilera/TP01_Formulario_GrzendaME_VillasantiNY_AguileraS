@@ -9,13 +9,11 @@ const printStatus = (input, subtext, errorMsg, valid) =>{
     if (valid) {
         if (!campo.classList.contains("valid")) campo.classList.toggle("valid");
         if (campo.classList.contains("invalid")) campo.classList.toggle("invalid");
-        campo.style.color = "black";
         error.style.color = "black";
         error.innerHTML = "";
     } else {
         if (!campo.classList.contains("invalid")) campo.classList.toggle("invalid");
         if (campo.classList.contains("valid")) campo.classList.toggle("valid");
-        campo.style.color = "red";
         error.style.color = "red";
         error.innerHTML = errorMsg;
     }
