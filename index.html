@@ -19,9 +19,11 @@
                 <h3>Contraseña</h3>
                 <input type="password" id="password" name="password" class="form-control" aria-describedby="passwordHelpBlock" minlength="8" onkeyup="verifyPassword()">
                 <small class="error" id="errorPassword"></small>
+                <input type="checkbox" onclick="showPassword('password')">Mostrar Contraseña
                 <h3>Confirmar contraseña</h3>
                 <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" aria-describedby="passwordHelpBlock" onkeyup="verifyConfirmation()">
                 <small class="error" id="errorConfirm"></small>
+                <input type="checkbox" onclick="showPassword('confirmPassword')">Mostrar Contraseña
                 <div class="col-12">
                     <button class="btn btn-primary" type="button" id="sendButton" name="sendButton" onclick="verifyForm()">Confirmar</button>
                 </div>

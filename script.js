@@ -141,3 +141,15 @@ function resetErrorStyles(inputElement)
 {
     inputElement.style.border = "";
 }
+
+function showPassword(id) {
+    id = document.getElementById(id);
+
+    console.log(id)
+
+    if (id.type === "password") {
+      id.type = "text";
+    } else {
+      id.type = "password";
+    }
+  }
