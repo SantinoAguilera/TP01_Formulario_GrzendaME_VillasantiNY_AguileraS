@@ -14,8 +14,14 @@ body{
     background-color: white;
 }
 .valid{
-    color: green;
+    color: black;
 }
 .invalid{
     color: red;
+}
+h3, button{
+    margin-top: 2%;
+}
+button{
+    margin-bottom: 2%;
 }

@@ -7,12 +7,14 @@ const printStatus = (input, subtext, errorMsg, valid) =>{
     let campo = document.getElementById(input);
     let error = document.getElementById(subtext);
     if (valid) {
-        campo.classList.toggle("valid");
+        if (!campo.classList.contains("valid")) campo.classList.toggle("valid");
+        if (campo.classList.contains("invalid")) campo.classList.toggle("invalid");
         campo.style.color = "black";
         error.style.color = "black";
         error.innerHTML = "";
     } else {
-        campo.classList.toggle("invalid");
+        if (!campo.classList.contains("invalid")) campo.classList.toggle("invalid");
+        if (campo.classList.contains("valid")) campo.classList.toggle("valid");
         campo.style.color = "red";
         error.style.color = "red";
         error.innerHTML = errorMsg;
