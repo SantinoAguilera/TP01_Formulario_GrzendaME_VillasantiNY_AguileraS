@@ -31,10 +31,11 @@ const verifyName = () =>{
 
 const verifyEmail = () =>{
     const email = document.getElementById("email");
+    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     const errorMsg = "El email tiene que tener un formato valido";
     let valid
 
-    if (condition) {
+    if (regex.test(email.value) && email.value.match('@')) {
         valid = true;
     } else {
         valid = false;
