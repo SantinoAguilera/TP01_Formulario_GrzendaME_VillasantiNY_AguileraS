@@ -18,9 +18,9 @@ const printStatus = (input, subtext, errorMsg, valid) =>{
 const verifyName = () =>{
     const name = document.getElementById("name");
     const errorMsg = "El nombre tiene que tener un minimo de 3 caracteres"
-    let valid;
+    let valid = false;
 
-    if (name.value >= 3) {
+    if (name.value.length >= 3) {
         valid = true;
     }
     else{

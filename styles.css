@@ -13,3 +13,9 @@ body{
 .container{
     background-color: white;
 }
+.valid{
+    color: green;
+}
+.invalid{
+    color: red;
+}
