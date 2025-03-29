@@ -127,7 +127,7 @@ const verifyForm = () =>
         let email = document.getElementById("email");
         let password = document.getElementById("password");
         console.log(localStorage.getItem("usrNum"));
-        var userNumber = parseInt(localStorage.getItem("usrNum"))++;
+        let userNumber = parseInt(localStorage.getItem("usrNum"))++;
         localStorage.setItem("usrNum", userNumber.toString());
         localStorage.setItem("Usr" + userNumber, JSON.stringify([name.value, email.value, password.value]));
         users.add("Usr" + localStorage.getItem("usrNum"));
