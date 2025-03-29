@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="styles.css"></link>
 </head>
 <body>
+        <button type="button" id="theme" name="" onclick="darkModeToggle()"><img src="moon.png" id="themeBtn" alt=""></button>
         <div class="container">
             <form id="form">
-                <h3 class="firstTitle">Nombre Completo</h3>
-                <input class="form-control" type="text" id="name" name="name" placeholder="Juan Gutiérrez" aria-label="default input example" minlength="3" onkeyup="verifyName()">
+                <h3>Nombre Completo</h3>
+                <input class="form-control" type="text" id="name" name="name" placeholder="Juan Gutiérrez" aria-label="default input example" onkeyup="verifyName()">
                 <small class="error" id="errorName"></small>
                 <h3>Email</h3>
                 <input type="email" id="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" onkeyup="verifyEmail()">
