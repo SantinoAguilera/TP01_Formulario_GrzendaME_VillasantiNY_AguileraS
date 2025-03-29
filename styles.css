@@ -1,27 +1,46 @@
+:root{
+    --text: black;
+    --bg1: rgb(207, 184, 166);
+    --bg2: white;
+}
 body{
-    background-color: rgb(207, 184, 166);
-    color: black;
+    background-color: var(--bg1);
     display: flex;
     height: 100vh;
     justify-content: center;
     align-items: center;
 }
-.dark-mode{
-    background-color: black;
-    color: white;
+
+a{
+    top: 0;
+    left: 0;
+}
+#theme{
+    background: transparent;
+    border: none !important;
+    font-size: 0;
+    max-width: 5%;
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+#theme img{
+    width: 80%;
+    height: 80%;
 }
 .container{
-    background-color: white;
+    background-color: var(--bg2);
+    color: var(--text);
 }
 .valid{
-    color: black;
+    border-color: green;
 }
 .invalid{
-    color: red;
+    border-color: red;
 }
 h3, button{
     margin-top: 2%;
 }
-button{
+#sendButton{
     margin-bottom: 2%;
 }

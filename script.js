@@ -1,6 +1,26 @@
-function darkModeToggle(){
-    let body = document.body;
-    body.classList.toggle("dark-mode");
+const img = document.getElementById("themeBtn");
+const root = document.querySelector(':root');
+const html = document.querySelector('html');
+
+const darkModeToggle = () =>{
+    html.classList.toggle("dark-mode");
+    if (html.classList.contains("dark-mode")) {
+        localStorage.setItem("html", "dark-mode");
+        localStorage.setItem("img", "sun.png");
+        img.src = "sun.png"
+        root.style.setProperty('--text', 'white');
+        root.style.setProperty('--bg1', 'blue');
+        root.style.setProperty('--bg2', 'black');
+    } else {
+        localStorage.setItem("html", "");
+        localStorage.setItem("img", "moon.png");
+        root.style.setProperty('--text', 'black');
+        root.style.setProperty('--bg1', 'rgb(207, 184, 166)');
+        root.style.setProperty('--bg2', 'white');
+        img.src = "moon.png"
+    }
+    let compRoot = getComputedStyle(root);
+    localStorage.setItem("variables", JSON.stringify([compRoot.getPropertyValue('--text'), compRoot.getPropertyValue('--bg1'), compRoot.getPropertyValue('--bg2')]));
 }
 
 const printStatus = (input, subtext, errorMsg, valid) =>{
@@ -9,7 +29,6 @@ const printStatus = (input, subtext, errorMsg, valid) =>{
     if (valid) {
         if (!campo.classList.contains("valid")) campo.classList.toggle("valid");
         if (campo.classList.contains("invalid")) campo.classList.toggle("invalid");
-        error.style.color = "black";
         error.innerHTML = "";
     } else {
         if (!campo.classList.contains("invalid")) campo.classList.toggle("invalid");
@@ -18,6 +37,7 @@ const printStatus = (input, subtext, errorMsg, valid) =>{
         error.innerHTML = errorMsg;
     }
 }
+
 
 const verifyName = () =>{
     const name = document.getElementById("name");
@@ -152,4 +172,13 @@ function showPassword(id) {
     } else {
       id.type = "password";
     }
-  }
+}
+if (localStorage.getItem("html") != null){
+    html.classList.add(localStorage.getItem("html"));
+    let variables = JSON.parse(localStorage.getItem("variables"));
+    root.style.setProperty('--text', variables[0]);
+    root.style.setProperty('--bg1', variables[1]);
+    root.style.setProperty('--bg2', variables[2]);
+}
+if (localStorage.getItem("img") != null) img.src = localStorage.getItem("img");
+if (localStorage.getItem("root") != null) root.value = localStorage.getItem("root");
