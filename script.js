@@ -9,9 +9,9 @@ const darkModeToggle = () =>{
         localStorage.setItem("html", "dark-mode");
         localStorage.setItem("img", "sun.png");
         img.src = "sun.png"
-        root.style.setProperty('--text', 'white');
-        root.style.setProperty('--bg1', 'black');
-        root.style.setProperty('--bg2', 'grey');
+        root.style.setProperty('--text', 'rgb(220, 220, 220)');
+        root.style.setProperty('--bg1', 'rgb(47, 41, 38)');
+        root.style.setProperty('--bg2', 'rgb(20,20,20)');
     } else {
         localStorage.setItem("html", "");
         localStorage.setItem("img", "moon.png");
@@ -39,11 +39,11 @@ const printStatus = (input, subtext, errorMsg, valid) =>{
     }
 }
 
+var nameCorrect, emailCorrect, passwordCorrect, confirmationCorrect;
 
 const verifyName = () =>{
     const name = document.getElementById("name");
-    const errorMsg = "El nombre tiene que tener un minimo de 3 caracteres"
-    let valid = false;
+    const errorMsg = "Tu nombre debe ser de al menos 3 caracteres.";
 
     if (name.value.length >= 3) {
         valid = true;
@@ -51,6 +51,7 @@ const verifyName = () =>{
     else{
         valid = false;
     }
+    nameCorrect = valid;
     printStatus("name", "errorName", errorMsg, valid);
     return valid;
 }
@@ -58,7 +59,7 @@ const verifyName = () =>{
 const verifyEmail = () =>{
     const email = document.getElementById("email");
     const regex = /[$&+,:;=?/\\#|'<>^*()%!-\s]/;
-    const errorMsg = "El email tiene que tener un formato valido";
+    const errorMsg = "Tu email debe tener un formato válido.";
     let valid
 
     if (!regex.test(email.value) && /@/.test(email.value)) {
@@ -66,6 +67,7 @@ const verifyEmail = () =>{
     } else {
         valid = false;
     }
+    emailCorrect = valid;
     printStatus("email", "errorEmail", errorMsg, valid);
     return valid;
 }
@@ -85,6 +87,7 @@ function verifyPassword()
     {
         valid = false;
     }
+    passwordCorrect = valid;
     printStatus("password", "errorPassword", errorMsg, valid);
     return valid;
 }
@@ -104,8 +107,71 @@ function verifyConfirmation()
     {
         valid = false;
     }
+    confirmationCorrect = valid;
     printStatus("confirmPassword", "errorConfirm", errorMsg, valid);
     return valid;
+}
+
+function verifyForm()
+{
+    const name = document.getElementById("name");
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirmPassword");
+    const registerConfirm = document.getElementById("registerConfirm");
+    let error = false;
+
+    if (name.value.trim().length === 0 || !nameCorrect)
+    {
+        error = true;
+    }
+    else
+    {
+        resetErrorStyles(name);
+    }
+
+    if (email.value.trim().length === 0 || !emailCorrect)
+    {
+        error = true;
+    }
+    else
+    {
+        resetErrorStyles(email);
+    }
+
+    if (password.value.trim().length === 0 || !passwordCorrect)
+    {
+        error = true;
+    }
+    else
+    {
+        resetErrorStyles(password);
+    }
+
+    if (confirmPassword.value.trim().length === 0 || !confirmationCorrect)
+    {
+        error = true;
+    }
+    else
+    {
+        resetErrorStyles(confirmPassword);
+    }
+
+    if (!error)
+    {
+        registerConfirm.innerHTML = "Se registró exitosamente.";
+        localStorage.setItem()
+    }
+    else
+    {
+    	registerConfirm.innerHTML = "";
+    }
+}
+
+function resetErrorStyles(inputElement)
+{
+    function showPassword(id) {
+    inputElement.style.border = "";
 }
 
 const showPassword = (id) => {
