@@ -9,9 +9,9 @@ const darkModeToggle = () =>{
         localStorage.setItem("html", "dark-mode");
         localStorage.setItem("img", "sun.png");
         img.src = "sun.png"
-        root.style.setProperty('--text', 'rgb(220, 220, 220)');
-        root.style.setProperty('--bg1', 'rgb(47, 41, 38)');
-        root.style.setProperty('--bg2', 'rgb(20,20,20)');
+        root.style.setProperty('--text', 'white');
+        root.style.setProperty('--bg1', 'black');
+        root.style.setProperty('--bg2', 'grey');
     } else {
         localStorage.setItem("html", "");
         localStorage.setItem("img", "moon.png");
@@ -39,11 +39,11 @@ const printStatus = (input, subtext, errorMsg, valid) =>{
     }
 }
 
-var nameCorrect, emailCorrect, passwordCorrect, confirmationCorrect;
 
 const verifyName = () =>{
     const name = document.getElementById("name");
-    const errorMsg = "Tu nombre debe ser de al menos 3 caracteres.";
+    const errorMsg = "El nombre tiene que tener un minimo de 3 caracteres"
+    let valid = false;
 
     if (name.value.length >= 3) {
         valid = true;
@@ -51,7 +51,6 @@ const verifyName = () =>{
     else{
         valid = false;
     }
-    nameCorrect = valid;
     printStatus("name", "errorName", errorMsg, valid);
     return valid;
 }
@@ -59,7 +58,7 @@ const verifyName = () =>{
 const verifyEmail = () =>{
     const email = document.getElementById("email");
     const regex = /[$&+,:;=?/\\#|'<>^*()%!-\s]/;
-    const errorMsg = "Tu email debe tener un formato válido.";
+    const errorMsg = "El email tiene que tener un formato valido";
     let valid
 
     if (!regex.test(email.value) && /@/.test(email.value)) {
@@ -67,7 +66,6 @@ const verifyEmail = () =>{
     } else {
         valid = false;
     }
-    emailCorrect = valid;
     printStatus("email", "errorEmail", errorMsg, valid);
     return valid;
 }
@@ -87,7 +85,6 @@ function verifyPassword()
     {
         valid = false;
     }
-    passwordCorrect = valid;
     printStatus("password", "errorPassword", errorMsg, valid);
     return valid;
 }
@@ -107,71 +104,8 @@ function verifyConfirmation()
     {
         valid = false;
     }
-    confirmationCorrect = valid;
     printStatus("confirmPassword", "errorConfirm", errorMsg, valid);
     return valid;
-}
-
-function verifyForm()
-{
-    const name = document.getElementById("name");
-    const email = document.getElementById("email");
-    const password = document.getElementById("password");
-    const confirmPassword = document.getElementById("confirmPassword");
-    const registerConfirm = document.getElementById("registerConfirm");
-    let error = false;
-
-    if (name.value.trim().length === 0 || !nameCorrect)
-    {
-        error = true;
-    }
-    else
-    {
-        resetErrorStyles(name);
-    }
-
-    if (email.value.trim().length === 0 || !emailCorrect)
-    {
-        error = true;
-    }
-    else
-    {
-        resetErrorStyles(email);
-    }
-
-    if (password.value.trim().length === 0 || !passwordCorrect)
-    {
-        error = true;
-    }
-    else
-    {
-        resetErrorStyles(password);
-    }
-
-    if (confirmPassword.value.trim().length === 0 || !confirmationCorrect)
-    {
-        error = true;
-    }
-    else
-    {
-        resetErrorStyles(confirmPassword);
-    }
-
-    if (!error)
-    {
-        registerConfirm.innerHTML = "Se registró exitosamente.";
-        localStorage.setItem()
-    }
-    else
-    {
-    	registerConfirm.innerHTML = "";
-    }
-}
-
-function resetErrorStyles(inputElement)
-{
-    function showPassword(id) {
-    inputElement.style.border = "";
 }
 
 const showPassword = (id) => {
@@ -192,11 +126,15 @@ const verifyForm = () =>
         let name = document.getElementById("name");
         let email = document.getElementById("email");
         let password = document.getElementById("password");
-        console.log(localStorage.getItem("usrNum"));
-        let userNumber = parseInt(localStorage.getItem("usrNum"))++;
+        let userNumber = parseInt(localStorage.getItem("usrNum")) + 1;
+        let usrId = "Usr" + userNumber;
         localStorage.setItem("usrNum", userNumber.toString());
-        localStorage.setItem("Usr" + userNumber, JSON.stringify([name.value, email.value, password.value]));
-        users.add("Usr" + localStorage.getItem("usrNum"));
+        localStorage.setItem(usrId, JSON.stringify([name.value, email.value, password.value]));
+        if (localStorage.getItem("users") != null) users = localStorage.getItem("users");
+        console.log(localStorage.getItem(usrId));
+        users.push(usrId);
+        localStorage.setItem("users", JSON.stringify(users));
+        console.log(localStorage.getItem(users));
     }
     location.reload();
 }
@@ -204,10 +142,11 @@ const Delete = (index) =>{
     localStorage.removeItem(index);
     location.reload();
 }
-if(window.location['href'] == 'usr.html'){
+const buffer = () =>{
     let list = document.getElementById("list");
+    users = localStorage.getItem("users");
     for (let index = 0; index < users.length; index++) {
-        usr = JSON.parse(localStorage.getItem(users[index]));
+        let usr = localStorage.getItem(users[indexpt2]);
         list.innerHTML += `
             <tr>
                 <th scope="row">${index++}</th>
@@ -226,6 +165,6 @@ if (localStorage.getItem("html") != null){
     root.style.setProperty('--bg1', variables[1]);
     root.style.setProperty('--bg2', variables[2]);
 }
+if (localStorage.getItem("usrNum") == null) localStorage.setItem("usrNum", "0");
 if (localStorage.getItem("img") != null) img.src = localStorage.getItem("img");
 if (localStorage.getItem("root") != null) root.value = localStorage.getItem("root");
-if (localStorage.getItem("usrNum") == null) localStorage.setItem("usrNum", "0");
