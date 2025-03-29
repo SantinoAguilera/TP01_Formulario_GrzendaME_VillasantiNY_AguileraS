@@ -2,6 +2,8 @@
     --text: black;
     --bg1: rgb(207, 184, 166);
     --bg2: white;
+    --input: white;
+    --border: white; 
 }
 body{
     background-color: var(--bg1);
@@ -41,18 +43,26 @@ a{
 .firstTitle{
     margin-top: 0;
 }
+input{
+    color: var(--text) !important;
+    background-color: var(--input) !important;
+    border-color: var(--border) !important;
+}
+input:focus{
+    border-color: #5D7FB0 !important;
+}
 .valid{
-    border-color: green;
+    border-color: green !important;
 }
 .valid:focus{
-    border-color: green;
+    border-color: green !important;
     box-shadow: 0 0 0 .25rem rgba(13, 253, 13, 0.25);
 }
 .invalid{
-    border-color: red;
+    border-color: red !important;
 }
 .invalid:focus{
-    border-color: red;
+    border-color: red !important;
     box-shadow: 0 0 0 .25rem rgba(253, 13, 13, 0.25);
 }
 h3, button{

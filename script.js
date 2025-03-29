@@ -9,15 +9,19 @@ const darkModeToggle = () =>{
         localStorage.setItem("html", "dark-mode");
         localStorage.setItem("img", "sun.png");
         img.src = "sun.png"
-        root.style.setProperty('--text', 'white');
-        root.style.setProperty('--bg1', 'black');
-        root.style.setProperty('--bg2', 'grey');
+        root.style.setProperty('--text', 'rgb(220, 220, 220)');
+        root.style.setProperty('--bg1', 'rgb(47, 41, 38)');
+        root.style.setProperty('--bg2', 'rgb(20,20,20)');
+        root.style.setProperty('--input', '#181a1b');
+        root.style.setProperty('--border', '#383d3f');
     } else {
         localStorage.setItem("html", "");
         localStorage.setItem("img", "moon.png");
         root.style.setProperty('--text', 'black');
         root.style.setProperty('--bg1', 'rgb(207, 184, 166)');
         root.style.setProperty('--bg2', 'white');
+        root.style.setProperty('--input', 'white');
+        root.style.setProperty('--border', '#dee2e6');
         img.src = "moon.png"
     }
     let compRoot = getComputedStyle(root);
