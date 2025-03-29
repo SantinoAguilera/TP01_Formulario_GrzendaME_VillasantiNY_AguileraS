@@ -27,7 +27,7 @@ const darkModeToggle = () =>{
         img.src = "moon.png"
     }
     let compRoot = getComputedStyle(root);
-    localStorage.setItem("variables", JSON.stringify([compRoot.getPropertyValue('--text'), compRoot.getPropertyValue('--bg1'), compRoot.getPropertyValue('--bg2')]));
+    localStorage.setItem("variables", JSON.stringify([compRoot.getPropertyValue('--text'), compRoot.getPropertyValue('--bg1'), compRoot.getPropertyValue('--bg2'), compRoot.getPropertyValue('--input'), compRoot.getPropertyValue('--border'), compRoot.getPropertyValue('--placeholder')]));
 }
 
 const printStatus = (input, subtext, errorMsg, valid) =>{
@@ -125,6 +125,69 @@ const showPassword = (id) => {
       id.type = "password";
     }
 }
+function verifyForm()
+{
+    const name = document.getElementById("name");
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirmPassword");
+    const registerConfirm = document.getElementById("registerConfirm");
+    let error = false;
+
+    if (name.value.trim().length === 0 || !verifyName())
+    {
+        error = true;
+    }
+    else
+    {
+        resetErrorStyles(name);
+    }
+
+    if (email.value.trim().length === 0 || !verifyEmail())
+    {
+        error = true;
+    }
+    else
+    {
+        resetErrorStyles(email);
+    }
+
+    if (password.value.trim().length === 0 || !verifyPassword())
+    {
+        error = true;
+    }
+    else
+    {
+        resetErrorStyles(password);
+    }
+
+    if (confirmPassword.value.trim().length === 0 || !verifyConfirmation())
+    {
+        error = true;
+    }
+    else
+    {
+        resetErrorStyles(confirmPassword);
+    }
+
+    if (!error)
+    {
+        registerConfirm.innerHTML = "Se registró exitosamente.";
+        registerConfirm.style.color = "green";
+        localStorage.setItem()
+    }
+    else
+    {
+    	registerConfirm.innerHTML = "";
+    }
+}
+
+function resetErrorStyles(inputElement)
+{
+    inputElement.style.border = "";
+}
+/* HASTA QUE FUNCIONE PUSHEAR USANDO LAS 2 FUNCIONES DE ARRIBA
+
 const verifyForm = () =>
 {
     let valid = verifyConfirmation() && verifyEmail() && verifyName() && verifyPassword();
@@ -141,9 +204,10 @@ const verifyForm = () =>
         users.push(usrId);
         localStorage.setItem("users", JSON.stringify(users));
         console.log(localStorage.getItem(users));
+        
     }
     location.reload();
-}
+}*/
 const Delete = (index) =>{
     localStorage.removeItem(index);
     location.reload();
@@ -170,6 +234,9 @@ if (localStorage.getItem("html") != null){
     root.style.setProperty('--text', variables[0]);
     root.style.setProperty('--bg1', variables[1]);
     root.style.setProperty('--bg2', variables[2]);
+    root.style.setProperty('--input', variables[3]);
+    root.style.setProperty('--border', variables[4]);
+    root.style.setProperty('--placeholder', variables[5]);
 }
 if (localStorage.getItem("usrNum") == null) localStorage.setItem("usrNum", "0");
 if (localStorage.getItem("img") != null) img.src = localStorage.getItem("img");

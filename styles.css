@@ -78,9 +78,6 @@ button{
 #sendButton{
     margin-bottom: 2%;
 }
-small{
-    color: red;
-}
 #buffer{
     position: fixed;
     bottom: 0;
