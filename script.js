@@ -14,6 +14,7 @@ const darkModeToggle = () =>{
         root.style.setProperty('--bg2', 'rgb(20,20,20)');
         root.style.setProperty('--input', '#181a1b');
         root.style.setProperty('--border', '#383d3f');
+        root.style.setProperty('--placeholder', '#5e5d5b');
     } else {
         localStorage.setItem("html", "");
         localStorage.setItem("img", "moon.png");
@@ -22,6 +23,7 @@ const darkModeToggle = () =>{
         root.style.setProperty('--bg2', 'white');
         root.style.setProperty('--input', 'white');
         root.style.setProperty('--border', '#dee2e6');
+        root.style.setProperty('--placeholder', '#737578');
         img.src = "moon.png"
     }
     let compRoot = getComputedStyle(root);

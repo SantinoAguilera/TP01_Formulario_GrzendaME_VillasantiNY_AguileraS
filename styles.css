@@ -3,7 +3,8 @@
     --bg1: rgb(207, 184, 166);
     --bg2: white;
     --input: white;
-    --border: white; 
+    --border: #dee2e6;
+    --placeholder: #737578;
 }
 body{
     background-color: var(--bg1);
@@ -40,9 +41,6 @@ a{
     background-color: var(--bg2);
     color: var(--text);
 }
-.firstTitle{
-    margin-top: 0;
-}
 input{
     color: var(--text) !important;
     background-color: var(--input) !important;
@@ -50,6 +48,9 @@ input{
 }
 input:focus{
     border-color: #5D7FB0 !important;
+}
+input::placeholder{
+    color: var(--placeholder) !important;
 }
 .valid{
     border-color: green !important;
