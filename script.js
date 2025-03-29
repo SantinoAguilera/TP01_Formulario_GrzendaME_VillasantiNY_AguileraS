@@ -1,6 +1,7 @@
 const img = document.getElementById("themeBtn");
 const root = document.querySelector(':root');
 const html = document.querySelector('html');
+let users = [];
 
 const darkModeToggle = () =>{
     html.classList.toggle("dark-mode");
@@ -9,8 +10,8 @@ const darkModeToggle = () =>{
         localStorage.setItem("img", "sun.png");
         img.src = "sun.png"
         root.style.setProperty('--text', 'white');
-        root.style.setProperty('--bg1', 'blue');
-        root.style.setProperty('--bg2', 'black');
+        root.style.setProperty('--bg1', 'black');
+        root.style.setProperty('--bg2', 'grey');
     } else {
         localStorage.setItem("html", "");
         localStorage.setItem("img", "moon.png");
@@ -51,6 +52,7 @@ const verifyName = () =>{
         valid = false;
     }
     printStatus("name", "errorName", errorMsg, valid);
+    return valid;
 }
 
 const verifyEmail = () =>{
@@ -65,6 +67,7 @@ const verifyEmail = () =>{
         valid = false;
     }
     printStatus("email", "errorEmail", errorMsg, valid);
+    return valid;
 }
 
 function verifyPassword()
@@ -83,6 +86,7 @@ function verifyPassword()
         valid = false;
     }
     printStatus("password", "errorPassword", errorMsg, valid);
+    return valid;
 }
 
 function verifyConfirmation()
@@ -101,68 +105,10 @@ function verifyConfirmation()
         valid = false;
     }
     printStatus("confirmPassword", "errorConfirm", errorMsg, valid);
+    return valid;
 }
 
-function verifyForm()
-{
-    const name = document.getElementById("name");
-    const email = document.getElementById("email");
-    const password = document.getElementById("password");
-    const confirmPassword = document.getElementById("confirmPassword");
-    let error = false;
-
-    if (name.value.trim().length === 0)
-    {
-        error = true;
-        name.style.border = "red";
-    }
-    else
-    {
-        resetErrorStyles(name);
-    }
-
-    if (email.value.trim().length === 0)
-    {
-        error = true;
-        email.style.border = "red";
-    }
-    else
-    {
-        resetErrorStyles(email);
-    }
-
-    if (password.value.trim().length === 0)
-    {
-        error = true;
-        password.style.border = "red";
-    }
-    else
-    {
-        resetErrorStyles(password);
-    }
-
-    if (confirmPassword.value.trim().length === 0)
-    {
-        error = true;
-        confirmPassword.style.border = "red";
-    }
-    else
-    {
-        resetErrorStyles(confirmPassword);
-    }
-
-    if (!error)
-    {
-        localStorage.setItem()
-    }
-}
-
-function resetErrorStyles(inputElement)
-{
-    inputElement.style.border = "";
-}
-
-function showPassword(id) {
+const showPassword = (id) => {
     id = document.getElementById(id);
 
     console.log(id)
@@ -173,6 +119,40 @@ function showPassword(id) {
       id.type = "password";
     }
 }
+const verifyForm = () =>
+{
+    let valid = verifyConfirmation() && verifyEmail() && verifyName() && verifyPassword();
+    if(valid){
+        let name = document.getElementById("name");
+        let email = document.getElementById("email");
+        let password = document.getElementById("password");
+        console.log(localStorage.getItem("usrNum"));
+        var userNumber = parseInt(localStorage.getItem("usrNum"))++;
+        localStorage.setItem("usrNum", userNumber.toString());
+        localStorage.setItem("Usr" + userNumber, JSON.stringify([name.value, email.value, password.value]));
+        users.add("Usr" + localStorage.getItem("usrNum"));
+    }
+    location.reload();
+}
+const Delete = (index) =>{
+    localStorage.removeItem(index);
+    location.reload();
+}
+if(window.location['href'] == 'usr.html'){
+    let list = document.getElementById("list");
+    for (let index = 0; index < users.length; index++) {
+        usr = JSON.parse(localStorage.getItem(users[index]));
+        list.innerHTML += `
+            <tr>
+                <th scope="row">${index++}</th>
+                <td>${usr[0]}</td>
+                <td>${usr[1]}</td>
+                <td><button type="button" class="btn btn-danger" onclick=Delete(${users[index]})>Delete</button></td>
+            </tr>
+        `   
+    }
+}
+
 if (localStorage.getItem("html") != null){
     html.classList.add(localStorage.getItem("html"));
     let variables = JSON.parse(localStorage.getItem("variables"));
@@ -182,3 +162,4 @@ if (localStorage.getItem("html") != null){
 }
 if (localStorage.getItem("img") != null) img.src = localStorage.getItem("img");
 if (localStorage.getItem("root") != null) root.value = localStorage.getItem("root");
+if (localStorage.getItem("usrNum") == null) localStorage.setItem("usrNum", "0");
