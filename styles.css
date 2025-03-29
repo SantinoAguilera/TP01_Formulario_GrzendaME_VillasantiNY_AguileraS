@@ -12,8 +12,11 @@ body{
 }
 
 a{
+    position: fixed;
     top: 0;
     left: 0;
+    margin-top: 3%;
+    margin-left: 1%;
 }
 #theme{
     background: transparent;
@@ -23,6 +26,7 @@ a{
     position: fixed;
     top: 0;
     right: 0;
+    margin-right: 1%;
 }
 #theme img{
     width: 80%;
