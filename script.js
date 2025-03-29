@@ -19,10 +19,11 @@ const printStatus = (input, subtext, errorMsg, valid) =>{
     }
 }
 
+var nameCorrect, emailCorrect, passwordCorrect, confirmationCorrect;
+
 const verifyName = () =>{
     const name = document.getElementById("name");
-    const errorMsg = "El nombre tiene que tener un minimo de 3 caracteres"
-    let valid = false;
+    const errorMsg = "Tu nombre debe ser de al menos 3 caracteres.";
 
     if (name.value.length >= 3) {
         valid = true;
@@ -30,13 +31,14 @@ const verifyName = () =>{
     else{
         valid = false;
     }
+    nameCorrect = valid;
     printStatus("name", "errorName", errorMsg, valid);
 }
 
 const verifyEmail = () =>{
     const email = document.getElementById("email");
     const regex = /[$&+,:;=?/\\#|'<>^*()%!-\s]/;
-    const errorMsg = "El email tiene que tener un formato valido";
+    const errorMsg = "Tu email debe tener un formato válido.";
     let valid
 
     if (!regex.test(email.value) && /@/.test(email.value)) {
@@ -44,6 +46,7 @@ const verifyEmail = () =>{
     } else {
         valid = false;
     }
+    emailCorrect = valid;
     printStatus("email", "errorEmail", errorMsg, valid);
 }
 
@@ -62,6 +65,7 @@ function verifyPassword()
     {
         valid = false;
     }
+    passwordCorrect = valid;
     printStatus("password", "errorPassword", errorMsg, valid);
 }
 
@@ -80,6 +84,7 @@ function verifyConfirmation()
     {
         valid = false;
     }
+    confirmationCorrect = valid;
     printStatus("confirmPassword", "errorConfirm", errorMsg, valid);
 }
 
@@ -89,42 +94,39 @@ function verifyForm()
     const email = document.getElementById("email");
     const password = document.getElementById("password");
     const confirmPassword = document.getElementById("confirmPassword");
+    const registerConfirm = document.getElementById("registerConfirm");
     let error = false;
 
-    if (name.value.trim().length === 0)
+    if (name.value.trim().length === 0 || !nameCorrect)
     {
         error = true;
-        name.style.border = "red";
     }
     else
     {
         resetErrorStyles(name);
     }
 
-    if (email.value.trim().length === 0)
+    if (email.value.trim().length === 0 || !emailCorrect)
     {
         error = true;
-        email.style.border = "red";
     }
     else
     {
         resetErrorStyles(email);
     }
 
-    if (password.value.trim().length === 0)
+    if (password.value.trim().length === 0 || !passwordCorrect)
     {
         error = true;
-        password.style.border = "red";
     }
     else
     {
         resetErrorStyles(password);
     }
 
-    if (confirmPassword.value.trim().length === 0)
+    if (confirmPassword.value.trim().length === 0 || !confirmationCorrect)
     {
         error = true;
-        confirmPassword.style.border = "red";
     }
     else
     {
@@ -133,6 +135,7 @@ function verifyForm()
 
     if (!error)
     {
+        registerConfirm.innerHTML = "Se registró exitosamente.";
         localStorage.setItem()
     }
 }
