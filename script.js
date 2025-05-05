@@ -174,7 +174,22 @@ function verifyForm()
     {
         registerConfirm.innerHTML = "Se registró exitosamente.";
         registerConfirm.style.color = "green";
-        localStorage.setItem()
+        let users = [];
+        let latestId = 0;
+        if (localStorage.getItem("users")) {
+            users = JSON.parse(localStorage.getItem("users"));
+            latestId = users[users.length - 1].id;
+        }
+        let user = {
+            id: latestId,
+            name: name.value,
+            email: email.value,
+            password: password.value
+        }
+        users.push(user);
+        console.log(users);
+        localStorage.setItem("users", JSON.stringify(users));
+        console.log(JSON.parse(localstorage.getItem("users")));
     }
     else
     {
@@ -208,25 +223,6 @@ const verifyForm = () =>
     }
     location.reload();
 }*/
-const Delete = (index) =>{
-    localStorage.removeItem(index);
-    location.reload();
-}
-const buffer = () =>{
-    let list = document.getElementById("list");
-    users = localStorage.getItem("users");
-    for (let index = 0; index < users.length; index++) {
-        let usr = localStorage.getItem(users[indexpt2]);
-        list.innerHTML += `
-            <tr>
-                <th scope="row">${index++}</th>
-                <td>${usr[0]}</td>
-                <td>${usr[1]}</td>
-                <td><button type="button" class="btn btn-danger" onclick=Delete(${users[index]})>Delete</button></td>
-            </tr>
-        `   
-    }
-}
 
 if (localStorage.getItem("html") != null){
     html.classList.add(localStorage.getItem("html"));
@@ -238,6 +234,5 @@ if (localStorage.getItem("html") != null){
     root.style.setProperty('--border', variables[4]);
     root.style.setProperty('--placeholder', variables[5]);
 }
-if (localStorage.getItem("usrNum") == null) localStorage.setItem("usrNum", "0");
 if (localStorage.getItem("img") != null) img.src = localStorage.getItem("img");
 if (localStorage.getItem("root") != null) root.value = localStorage.getItem("root");

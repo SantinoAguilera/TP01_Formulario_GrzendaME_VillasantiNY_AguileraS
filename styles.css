@@ -78,8 +78,3 @@ button{
 #sendButton{
     margin-bottom: 2%;
 }
-#buffer{
-    position: fixed;
-    bottom: 0;
-    right: 0;
-}
