@@ -1,7 +1,6 @@
 const img = document.getElementById("themeBtn");
 const root = document.querySelector(':root');
 const html = document.querySelector('html');
-let users = [];
 
 const darkModeToggle = () =>{
     html.classList.toggle("dark-mode");
@@ -179,10 +178,7 @@ function verifyForm()
         registerConfirm.style.color = "green";
         let users = [];
         let latestId = 0;
-        if (localStorage.getItem("users")) {
-            users = JSON.parse(localStorage.getItem("users"));
-            latestId = users[users.length - 1].id;
-        }
+        if (localStorage.getItem("users")) users = JSON.parse(localStorage.getItem("users"));
         let user = {
             id: latestId,
             name: name.value,
@@ -192,7 +188,7 @@ function verifyForm()
         users.push(user);
         console.log(users);
         localStorage.setItem("users", JSON.stringify(users));
-        console.log(JSON.parse(localstorage.getItem("users")));
+        console.log(JSON.parse(localStorage.getItem("users")));
     }
     else
     {
