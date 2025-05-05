@@ -63,7 +63,7 @@ const verifyName = () =>{
 
 const verifyEmail = () =>{
     const email = document.getElementById("email");
-    const regex = /[$&+,:;=?/\\#|'<>^*()%!-\s]/;
+    const regex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
     const errorMsg = "El email tiene que tener un formato valido";
     let valid
 
